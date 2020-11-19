@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if user.is_authenticated %}
-<form action="/index" method="post" class="form-horizontal" role="form" align="center">
+<form action="/display" method="post" class="form-horizontal" role="form" align="center">
 	{% csrf_token %}
 <input id = "url" type = "text" name = "url"
 						placeholder = "Enter a url here">

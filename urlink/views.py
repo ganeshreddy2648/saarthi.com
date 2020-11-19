@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login
+import urllib.request, urllib.error, urllib.parse
+from django.utils.safestring import mark_safe
 from django.http import HttpResponse
 # Create your views here.
 from urlink.models import urlMod
@@ -24,19 +26,47 @@ def register(request):
 def index(request):
     if request.method == 'GET':
         return render(request,'index.html')
-    else:
-            urlob = request.POST.get('url')
-            # urres = request.get('url').status_code
-            urres = HttpResponse(urlob).status_code
-            urlmod = urlMod(basicurl = urlob,
-                            basiccontent = urres
-            );
-            urlmod.save()
+    # else:
+    #         print("hello")
+    #         urlob = request.POST.get('url')
+    #         # urres = request.get('url').status_code
+    #         # urres = HttpResponse(urlob).status_code
+    #         response = urllib.request.urlopen(urlob)
+    #         webContent = response.read()
+    #         urres = webContent
+    #         urlmod = urlMod(basicurl = urlob,
+    #                         basiccontent = urres
+    #         );
+    #         # urlmod.save()
+    #         # print(webContent)
+    #         # return redirect(urlob)
+    #         context={}
+    #         context['response']=webContent
+    #         print(context['response'])
+    #
+    #         return render(request,'urlcontent.html',context)
 
-            return redirect(urlob)
 
 
+def display(request):
+    # print("hello")
+    urlob = request.POST.get('url')
+    # urres = request.get('url').status_code
+    # urres = HttpResponse(urlob).status_code
+    response = urllib.request.urlopen(urlob)
+    webContent = response.read()
+    encoding = response.headers.get_content_charset('utf-8')
+    html_text = webContent.decode(encoding)
 
+    urres = html_text
 
-
+    urlmod = urlMod(basicurl=urlob,
+                    basiccontent=urres
+                    );
+    try:
+        urlmod.save()
+    except:
+        pass
+    # print(webContent)
+    return render(request,'urlcontent.html', { 'response' : html_text })
 

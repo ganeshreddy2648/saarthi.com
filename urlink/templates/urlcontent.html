@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div id="urlprint" style="width: 400px; height: auto">
+
+            {% autoescape on %}
+
+            {{ response|safe }}
+            {% endautoescape %}
+
+    </div>
+<script>
+
+</script>
+{% endblock %}
