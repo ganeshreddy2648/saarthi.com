@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login
+from django.http import HttpResponse
 # Create your views here.
 from urlink.models import urlMod
-
 
 def register(request):
     if request.method == 'POST':
@@ -26,13 +26,14 @@ def index(request):
         return render(request,'index.html')
     else:
             urlob = request.POST.get('url')
-            urres = request.get('url').status_code
-
+            # urres = request.get('url').status_code
+            urres = HttpResponse(urlob).status_code
             urlmod = urlMod(basicurl = urlob,
                             basiccontent = urres
             );
             urlmod.save()
-            return render(request,urlob)
+
+            return redirect(urlob)
 
 
 

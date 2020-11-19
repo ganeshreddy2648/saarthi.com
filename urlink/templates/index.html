@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Redirect url in Javascript</title>
-</head>
-<body>
-<form action="/index" method="post">
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<form action="/index" method="post" class="form-horizontal" role="form" align="center">
 	{% csrf_token %}
 <input id = "url" type = "text" name = "url"
 						placeholder = "Enter a url here">
 <input type = "submit" name = "button" value="submit">
+
 </form>
-	<!--onclick = "fun()"-->
-<!--<script>-->
-<!--// function fun() {-->
-<!--// 	var url= document.getElementById("url").value;-->
-<!--// 	 // var myNewUrl = ;-->
-<!--// 	 document.write("Redirecting to the url in 3 seconds...");-->
-<!--// 	 setTimeout(function(){window.open(url,'_blank') ;}, 3000);-->
-<!--// 	//console.log(url);-->
-<!--// }-->
-<!--</script>-->
-</body>
-</html>
+<a href="{% url 'logout' %}">LOGOUT</a>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+{% endif%}
+{% endblock %}

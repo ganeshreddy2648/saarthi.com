@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
     {% if form.errors %}
     <p>There's something wrong with what you entered!</p>
     {% endif %}
@@ -20,6 +15,4 @@
         <p><input type="submit" value="login"></p>
         <input type="hidden" name="next" value="{{ next }}">
     </form>
-
-</body>
-</html>
+{% endblock %}
