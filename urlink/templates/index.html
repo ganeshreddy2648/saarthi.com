@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
+<h1>Enter your url here</h1>
 {% block content %}
 {% if user.is_authenticated %}
 <form action="/display" method="post" class="form-horizontal" role="form" align="center">
 	{% csrf_token %}
 <input id = "url" type = "text" name = "url"
-						placeholder = "Enter a url here">
-<input type = "submit" name = "button" value="submit">
+						placeholder = "Enter a url here" style="height: 40px">
+<input type = "submit" name = "button" value="submit" style="height: 40px">
 
 </form>
-<a href="{% url 'logout' %}">LOGOUT</a>
+<div style="text-align:center">
+<a href="{% url 'logout' %}" style="font-size: 40px;">LOGOUT</a>
+</div>
 {% else %}
-<a href="{% url 'login' %}">Login</a>
+<div style="text-align:center">
+<a href="{% url 'login' %}" style="font-size: 40px;">Login</a>
+</div>
+<div style="text-align:center">
+<a href="{% url 'register' %}" style="font-size: 40px;">Register</a>
+</div>
 {% endif%}
 {% endblock %}
