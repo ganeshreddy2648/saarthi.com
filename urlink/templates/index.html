@@ -6,7 +6,7 @@
 	{% csrf_token %}
 <input id = "url" type = "text" name = "url"
 						placeholder = "Enter a url here" style="height: 40px">
-<input type = "submit" name = "button" value="submit" style="height: 40px">
+<input type = "submit" class="btn-success" name = "button" value="submit" style="height: 40px">
 
 </form>
 <div style="text-align:center">
@@ -14,9 +14,11 @@
 </div>
 {% else %}
 <div style="text-align:center">
+<h2>click login</h2>
 <a href="{% url 'login' %}" style="font-size: 40px;">Login</a>
 </div>
 <div style="text-align:center">
+	<h2>register if new user</h2>
 <a href="{% url 'register' %}" style="font-size: 40px;">Register</a>
 </div>
 {% endif%}

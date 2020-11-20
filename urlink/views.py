@@ -51,9 +51,10 @@ def index(request):
 def display(request):
     # print("hello")
     urlob = request.POST.get('url')
-    # urres = request.get('url').status_code
-    # urres = HttpResponse(urlob).status_code
-    response = urllib.request.urlopen(urlob)
+    try:
+        response = urllib.request.urlopen(urlob)
+    except:
+        return redirect('index')
     webContent = response.read()
     encoding = response.headers.get_content_charset('utf-8')
     html_text = webContent.decode(encoding)
