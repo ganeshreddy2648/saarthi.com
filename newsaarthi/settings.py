@@ -25,7 +25,7 @@ SECRET_KEY = '1*q=atcu#^+h^+=lysr9e5ql_g!tvbq75q0+bay^sms&+r+1f4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'newsaarthi.herokuapp.com','127.0.0.1' ]
+ALLOWED_HOSTS = [ 'newsaarthi.herokuapp.com' ]
 
 # Application definition
 
